@@ -7,7 +7,7 @@ const baseUrl = 'http://localhost:8000';
 const processing = ref(false);
 const users = ref([]);
 const axios = useNuxtApp().$axios;
-const Toast = useNuxtApp().$Toast;
+const {user, userPermissions} = storeToRefs(useAuthStore());
 
 const listUsers = async () => {
   await axios.get(baseUrl+'/api/users').

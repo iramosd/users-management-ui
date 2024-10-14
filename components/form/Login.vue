@@ -4,8 +4,8 @@ const baseUrl = 'http://localhost:8000';
 const errors = ref(null);
 const form = ref({email: '', password: ''});
 const processing =ref(false);
-const user = ref({});
-const userPermissions = ref({});
+const {user, userPermissions} = storeToRefs(useAuthStore());
+
 
 const login = async () => {
   processing.value = true;
@@ -18,10 +18,10 @@ const login = async () => {
       })
       .catch(({response: {data}}) => {
         errors.value = data.errors;
-        console.log(errors.value)
       })
       .finally(() => {
-        processing.value = false
+        processing.value = false;
+        navigateTo();
       })
 }
 
@@ -31,12 +31,9 @@ const me = async () => {
       .then(({data}) => {
         user.value = data.data.user;
         userPermissions.value = data.data.permissions;
-
-        navigateTo();
       })
       .catch((data) => {
         errors.value = data.errors;
-        console.log(errors.value);
       });
 }
 </script>

@@ -1,7 +1,8 @@
+import {useAuthStore} from "~/stores/useAuthStore.ts";
 export default defineNuxtRouteMiddleware((to, from) => {
-    const userToken = useCookie('auth_token')
+    const {user, userPermissions} = storeToRefs(useAuthStore());
 
-    if (!userToken.value) {
+    if (userPermissions.length || user.length) {
         return navigateTo('/login')
     }
 })
