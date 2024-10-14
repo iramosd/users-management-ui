@@ -30,11 +30,11 @@ npm run build
 ## Instruccións:
 
 Para pruebas se puede usar cualquiera de los siguientes usuarios:
-
-- ROL ADMIN
+<br><br>
+- <strong>ROL ADMIN</strong>
   - Correo: ramosdumas_ismael@hotmail.com
   - Contraseña: UsersManagement2024!
-
-- ROL REVISOR
+<br><br>
+- <strong>ROL REVISOR</strong>
   - Correo: revisor@mail.com
   - Contraseña: UsersManagement2024!
