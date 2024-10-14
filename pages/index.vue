@@ -42,6 +42,7 @@ const loadUserData = async (user) => {
   userForm.value.email = user.email;
   userForm.value.password = user.password;
   userForm.value.password_confirmation = user.password;
+  userForm.value.role = user.rol_name;
 
   isUpdateForm.value = true;
   isShow.value = true;
@@ -117,7 +118,7 @@ onMounted(async () => await listUsers());
           <select class="form-select" v-model.trim="userForm.role">
             <option selected value="administrador">administrador</option>
             <option value="revisor">revisor</option>
-          </select>>
+          </select>
         </div>
       </div>
       <div class="mb-12 row my-4">
