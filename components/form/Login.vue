@@ -14,19 +14,17 @@ const login = async () => {
 
   await axios.post(baseUrl+'/login', form.value)
       .then(() => {
-        me();
+        me().then( () => navigateTo('/') );
       })
       .catch(({response: {data}}) => {
         errors.value = data.errors;
       })
       .finally(() => {
         processing.value = false;
-        navigateTo();
       })
 }
 
 const me = async () => {
-
   await axios.get(baseUrl+'/api/user')
       .then(({data}) => {
         user.value = data.data.user;

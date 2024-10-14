@@ -5,9 +5,9 @@ definePageMeta({
 
 const baseUrl = 'http://localhost:8000';
 const processing = ref(false);
-const users = ref([]);
+const { users } = storeToRefs(useUserStore());
+
 const axios = useNuxtApp().$axios;
-const {user, userPermissions} = storeToRefs(useAuthStore());
 
 const listUsers = async () => {
   await axios.get(baseUrl+'/api/users').
@@ -28,10 +28,10 @@ const updateUser = async () => {
 
 const deleteUser = async (id) => {
   await axios.delete(baseUrl+'/api/users/'+id).
-  then(({data}) => {
+  then(() => {
     listUsers();
-  }).catch(({response: {data}}) => {
-    console.log(data.message)
+  }).catch((data) => {
+    console.log(data)
   }).finally(() => {
     processing.value = false;
   });
