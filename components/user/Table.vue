@@ -12,7 +12,7 @@ const { userPermissions } = storeToRefs(useAuthStore());
 
 <template>
   <!-- BEGIN NEW USER BOTON -->
-  <div v-if="userPermissions.find(permission => permission === 'create-user')" class="row mb-4">
+  <div v-if="userPermissions.find(permission => permission === 'create-user')" @click="$emit('create')" class="row mb-4">
     <div class="col-1 offset-11">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#198754" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>

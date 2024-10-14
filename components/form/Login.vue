@@ -57,7 +57,3 @@ const me = async () => {
     </div>
   </form>
 </template>
-
-<style scoped>
-
-</style>
