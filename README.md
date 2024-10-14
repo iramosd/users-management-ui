@@ -1,75 +1,40 @@
-# Nuxt 3 Minimal Starter
+# Web para gestión de usuarios
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Configuración
 
-## Setup
-
-Make sure to install the dependencies:
+Instalar dependencias:
 
 ```bash
 # npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Servidor de desarrollo
 
-Start the development server on `http://localhost:3000`:
+Servidor de desarrollo en `http://localhost:3000`:
 
 ```bash
 # npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+npm run dev -- -0
 ```
 
-## Production
+## Producción
 
-Build the application for production:
+Preparar para producción:
 
 ```bash
 # npm
 npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## Instruccións:
 
-```bash
-# npm
-npm run preview
+Para pruebas se puede usar cualquiera de los siguientes usuarios:
 
-# pnpm
-pnpm run preview
+- ROL ADMIN
+  - Correo: ramosdumas_ismael@hotmail.com
+  - Contraseña: UsersManagement2024!
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- ROL REVISOR
+  - Correo: revisor@mail.com
+  - Contraseña: UsersManagement2024!
