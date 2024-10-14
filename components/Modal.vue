@@ -10,7 +10,7 @@ const props = defineProps({
   <div id="demo-modal" class="modal" :class="props.show ? 'show' : 'hidden'">
     <div class="modal__content">
       <slot/>
-      <a href="#" class="modal__close">&times;</a>
+      <a href="#" class="modal__close" @click="$emit('close')">&times;</a>
     </div>
   </div>
 </template>
@@ -83,5 +83,6 @@ const props = defineProps({
   right: 10px;
   color: #585858;
   text-decoration: none;
+  font-size: 2.5rem;
 }
 </style>

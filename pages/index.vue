@@ -8,6 +8,7 @@ const processing = ref(false);
 const { users } = storeToRefs(useUserStore());
 const userForm = ref({});
 const isShow = ref(false);
+const isUpdateForm = ref(false);
 
 const axios = useNuxtApp().$axios;
 
@@ -35,8 +36,30 @@ const createUser = async () => {
       })
 }
 
-const updateUser = async () => {
+const loadUserData = async (user) => {
+  userForm.value.first_name = user.first_name;
+  userForm.value.last_name = user.last_name;
+  userForm.value.email = user.email;
+  userForm.value.password = user.password;
+  userForm.value.password_confirmation = user.password;
 
+  isUpdateForm.value = true;
+  isShow.value = true;
+}
+
+const updateUser = async () => {
+  processing.value = true;
+  await axios.update(baseUrl+'/api/users', userForm.value)
+      .then(({data}) => {
+        userForm.value = {};
+        listUsers();
+      }).catch((data) => {
+        console.log(data.message)
+      }).finally(() => {
+        processing.value = false;
+        isShow.value = false;
+        isUpdateForm.value = false;
+      })
 }
 
 const deleteUser = async (id) => {
@@ -55,9 +78,9 @@ onMounted(async () => await listUsers());
 </script>
 
 <template>
-  <Modal :show="isShow">
+  <Modal :show="isShow" @close="() => isShow = false">
     <h1 class="fs-3 fw-bolder">Registrar usuario</h1>
-    <form :submit.prevent="!isShow">
+    <form @submit.prevent="createUser">
       <div class="mb-12 row my-4">
         <label for="first_name" class="col-sm-4 col-form-label fs-5 fw-bolder">Nombre(s)</label>
         <div class="col-sm-8">
@@ -79,13 +102,13 @@ onMounted(async () => await listUsers());
       <div class="mb-12 row my-4">
         <label for="password" class="col-sm-4 col-form-label fs-5 fw-bolder">Contraseña</label>
         <div class="col-sm-8">
-          <input type="password" class="form-control" id="password" v-model.trim="userForm.password">
+          <input type="password" class="form-control" id="password" v-model.trim="userForm.password" :readonly="isUpdateForm" :disabled="isUpdateForm">
         </div>
       </div>
       <div class="mb-12 row my-4">
         <label for="password_confirmation" class="col-sm-4 col-form-label fs-5 fw-bolder">Confirmar contraseña</label>
         <div class="col-sm-8">
-          <input type="password" class="form-control" id="password_confirmation" v-model.trim="userForm.password_confirmation">
+          <input type="password" class="form-control" id="password_confirmation" v-model.trim="userForm.password_confirmation" :readonly="isUpdateForm" :disabled="isUpdateForm">
         </div>
       </div>
       <div class="mb-12 row my-4">
@@ -106,7 +129,7 @@ onMounted(async () => await listUsers());
   </Modal>
 
   <div class="p-4">
-    <UserTable :users="users" @delete="deleteUser" @create="createUser"/>
+    <UserTable :users="users" @delete="deleteUser" @create="() => isShow = true" @update="loadUserData"/>
   </div>
 </template>
 
