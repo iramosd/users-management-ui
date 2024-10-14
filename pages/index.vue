@@ -1,4 +1,13 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'auth'
+});
+
+/*const {swalButtons} = useSwalCustom();
+const showModal = () => swalButtons.fire(
+    'Complete!',
+    'DRG has change.',
+    'success');*/
 </script>
 
 <template>
