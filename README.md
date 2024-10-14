@@ -1,5 +1,9 @@
 # Web para gestión de usuarios
 
+## Requisitos
+
+Node V20 o mayor
+
 ## Configuración
 
 Instalar dependencias:
