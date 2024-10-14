@@ -1,6 +1,44 @@
-<script setup lang="ts">
+<script setup>
+const axios = useNuxtApp().$axios;
+const baseUrl = 'http://localhost:8000';
+const errors = ref(null);
 const form = ref({email: '', password: ''});
-const {login, processing, errors} = useAuth(form.value);
+const processing =ref(false);
+const user = ref({});
+const userPermissions = ref({});
+
+const login = async () => {
+  processing.value = true;
+  errors.value = {};
+  await axios.get(baseUrl+'/sanctum/csrf-cookie');
+
+  await axios.post(baseUrl+'/login', form.value)
+      .then(() => {
+        me();
+      })
+      .catch(({response: {data}}) => {
+        errors.value = data.errors;
+        console.log(errors.value)
+      })
+      .finally(() => {
+        processing.value = false
+      })
+}
+
+const me = async () => {
+
+  await axios.get(baseUrl+'/api/user')
+      .then(({data}) => {
+        user.value = data.data.user;
+        userPermissions.value = data.data.permissions;
+
+        navigateTo();
+      })
+      .catch((data) => {
+        errors.value = data.errors;
+        console.log(errors.value);
+      });
+}
 </script>
 
 <template>

@@ -6,6 +6,5 @@ export default defineNuxtConfig({
   script: [
       '~/node_modules/bootstrap/dist/js/bootstrap.js',
       '~/node_modules/bootstrap/js/dist/modal.js'
-  ],
-  modules: ['@pinia/nuxt'],
+  ]
 })
