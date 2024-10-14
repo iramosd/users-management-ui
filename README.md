@@ -2,7 +2,7 @@
 
 ## Requisitos
 
-Node V20 o mayor
+- Node V20 o mayor
 
 ## Configuración
 
